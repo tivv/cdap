@@ -759,10 +759,13 @@ describe('Plugin Schema Editor', () => {
        * So the first time the test will fail and the second retry should pass.
        */
       Helpers.setNewSchemaEditor('true');
-      cy.open_node_property(wranglerId);
-      cy.get('[data-cy="Output Schema"] [data-cy="schema-editor-fieldset-container"]').should(
-        'be.disabled'
-      );
+      cy.open_node_property(wranglerId, { force: true }).then(() => {
+        cy.wait(2000);
+        cy.get('.loading-message').should('not.be.visible');
+        cy.get('[data-cy="Output Schema"] [data-cy="schema-editor-fieldset-container"]', {
+          timeout: 60000,
+        }).should('be.disabled');
+      });
     });
   });
 
