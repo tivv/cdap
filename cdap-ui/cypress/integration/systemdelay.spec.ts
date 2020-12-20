@@ -11,7 +11,7 @@ const EXPERIMENT_ID = 'system-delay-notification';
 const snoozeTimeLabel = `${EXPERIMENT_ID}-snoozetime`;
 const snoozeButtonLabel = `snooze-${EXPERIMENT_ID}`;
 
-describe('System delay notification ', () => {
+describe.skip('System delay notification ', () => {
   // Uses API call to login instead of logging in manually through UI
   before(() => {
     loginIfRequired().then(() => {

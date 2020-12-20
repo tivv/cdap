@@ -98,7 +98,7 @@ describe('Pipeline Studio', () => {
     cy.create_complex_pipeline();
   });
 
-  it('Should configure plugin properties', () => {
+  it.only('Should configure plugin properties', () => {
     cy.visit('/pipelines/ns/default/studio');
     const sourceProperties = {
       referenceName: 'BQ_Source',
