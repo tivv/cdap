@@ -789,6 +789,8 @@ describe('Plugin Schema Editor', () => {
 
       cy.get('input[data-cy="referenceName"]').type('FileRef');
       cy.get('input[data-cy="path"]').type('file_path');
+      cy.get('[data-cy="select-format"]').click();
+      cy.get('[data-cy="option-csv"]').click();
       cy.get('[data-cy="plugin-properties-validate-btn"]').click();
       cy.get(`[data-cy="schema-row-2"] [data-cy="error-icon"]`).then((el) => {
         expect(el).to.have.attr(
