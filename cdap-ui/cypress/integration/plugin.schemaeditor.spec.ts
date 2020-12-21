@@ -731,6 +731,7 @@ describe('Plugin Schema Editor', () => {
           cy.get('.action-buttons')
             .contains('Apply')
             .click();
+          cy.get('.action-buttons').should('not.contain', 'Apply');
           cy.get('[data-cy="schema-fields-list"]').then((el) => {
             expect(el[0].children.length).equal(1);
           });
