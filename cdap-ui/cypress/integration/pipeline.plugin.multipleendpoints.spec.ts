@@ -212,7 +212,7 @@ describe('Pipelines with plugins having more than one endpoints', () => {
     cy.open_node_property(stringFileSinkId);
     cy.get('input[data-cy="path"]').type('/tmp/cdap-ui-integration-fixtures/prices_in_string.txt');
     cy.get('[data-cy="select-format"]').click();
-    cy.get('[data-cy="option-text"]').click();
+    cy.get('[data-cy="option-csv"]').click();
     cy.get('input[data-cy="referenceName"]').type('StringFileSink');
     cy.close_node_property();
 
@@ -220,7 +220,7 @@ describe('Pipelines with plugins having more than one endpoints', () => {
     cy.get('input[data-cy="referenceName"]').type('IntFileSink');
     cy.get('input[data-cy="path"]').type('/tmp/cdap-ui-integration-fixtures/prices_in_int.txt');
     cy.get('[data-cy="select-format"]').click();
-    cy.get('[data-cy="option-text"]').click();
+    cy.get('[data-cy="option-csv"]').click();
     cy.close_node_property();
 
     cy.pipeline_clean_up_graph_control();

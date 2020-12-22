@@ -726,6 +726,7 @@ describe('Plugin Schema Editor', () => {
           cy.get('[data-cy="dataprep-side-panel"]')
             .contains('Transformation steps')
             .click();
+          cy.wait(100);
           cy.get('[data-cy="directive-row-0"] [data-cy="delete-directive"]').click();
           cy.get('[data-cy="loading-svg-centered"]').should('not.be.visible');
           cy.get('.action-buttons')
