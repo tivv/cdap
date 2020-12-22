@@ -119,7 +119,7 @@ declare global {
        * @nodeObj - NodeIdentifier object to identify the node in the canvas
        */
       open_node_property: (nodeObj: INodeIdentifier, options?: Partial<
-        Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Shadow & Cypress.Forceable>) => Chainable<JQuery<HTMLElement>>;
+        Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Forceable>) => Chainable<JQuery<HTMLElement>>;
 
       /**
        * Close node property modal
@@ -250,6 +250,7 @@ declare global {
       onbeforeunload: any;
       CDAP_CONFIG: any;
       ace: any;
+      localStorage: any;
     }
   }
 }

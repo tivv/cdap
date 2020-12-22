@@ -739,15 +739,16 @@ describe('Plugin Schema Editor', () => {
     });
   });
 
-  describe('Should show disabled schema in detailed view', () => {
+  describe.only('Should show disabled schema in detailed view', () => {
     const testPipeline = `test_pipeline_${Date.now()}`;
     before((done) => {
       // Deploy a pipeline to have a pipeline and some datasets to see
-      return Helpers.deployAndTestPipeline(
-        'fll_wrangler-test-pipeline.json',
-        testPipeline,
-        done
-      ).then(() => cy.wrap(1));
+      return Helpers.deployAndTestPipeline('fll_wrangler-test-pipeline.json', testPipeline).then(
+        () => {
+          done();
+          cy.wrap(1);
+        }
+      );
     });
     it('Should be disabled in deployed pipeline', () => {
       const wrangler: INodeInfo = { nodeName: 'Wrangler', nodeType: 'transform' };

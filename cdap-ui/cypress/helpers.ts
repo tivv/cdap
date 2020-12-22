@@ -28,7 +28,7 @@ function loginIfRequired() {
     cy.setCookie('CDAP_Auth_Token', authToken);
     cy.setCookie('CDAP_Auth_User', username);
     Cypress.Cookies.defaults({
-      preserve: ['CDAP_Auth_Token', 'CDAP_Auth_User'],
+      whitelist: ['CDAP_Auth_Token', 'CDAP_Auth_User'],
     });
     return cy.wrap({});
   }
@@ -56,7 +56,7 @@ function loginIfRequired() {
           cy.setCookie('CDAP_Auth_Token', respBody.access_token);
           cy.setCookie('CDAP_Auth_User', username);
           Cypress.Cookies.defaults({
-            preserve: ['CDAP_Auth_Token', 'CDAP_Auth_User'],
+            whitelist: ['CDAP_Auth_Token', 'CDAP_Auth_User'],
           });
         });
       }
@@ -97,7 +97,7 @@ function getArtifactsPoll(headers, retries = 0) {
   });
 }
 
-function deployAndTestPipeline(filename, pipelineName, done) {
+function deployAndTestPipeline(filename, pipelineName, done = () => ({})) {
   cy.visit('/cdap/ns/default/pipelines');
   cy.get('#resource-center-btn').click();
   cy.get('#create-pipeline-link').click();
@@ -152,13 +152,13 @@ function setNewSchemaEditor(state = 'false') {
 }
 
 function generateDraftFromPipeline(pipeline) {
-  return cy.fixture(pipeline).then((pipeline_for_draft) => {
+  return cy.fixture(pipeline).then((pipelineForDraft) => {
     const draftId = uuidV4();
-    const pipelineName = `${pipeline_for_draft.name}-${Date.now()}`;
-    pipeline_for_draft.__ui__ = { draftId, lastSaved: Date.now() };
-    pipeline_for_draft.name = pipelineName;
+    const pipelineName = `${pipelineForDraft.name}-${Date.now()}`;
+    pipelineForDraft.__ui__ = { draftId, lastSaved: Date.now() };
+    pipelineForDraft.name = pipelineName;
     const pipelineDraft = {
-      hydratorDrafts: { default: { [draftId]: pipeline_for_draft } },
+      hydratorDrafts: { default: { [draftId]: pipelineForDraft } },
     };
     return { pipelineDraft, pipelineName };
   });
