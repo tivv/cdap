@@ -1263,12 +1263,12 @@ public abstract class AppFabricTestBase {
   }
 
   private void verifyProgramRuns(ProgramId program, ProgramRunStatus status, int expected) throws Exception {
-    Tasks.waitFor(true, () -> getProgramRuns(program, status).size() > expected, 60, TimeUnit.SECONDS);
+    Tasks.waitFor(true, () -> getProgramRuns(program, status).size() > expected, 120, TimeUnit.SECONDS);
   }
 
   protected void assertProgramRuns(final ProgramId program, final ProgramRunStatus status, final int expected)
     throws Exception {
-    Tasks.waitFor(true, () -> getProgramRuns(program, status).size() == expected, 15, TimeUnit.SECONDS);
+    Tasks.waitFor(true, () -> getProgramRuns(program, status).size() == expected, 45, TimeUnit.SECONDS);
   }
 
   protected List<RunRecord> getProgramRuns(ProgramId program, ProgramRunStatus status) throws Exception {
