@@ -40,7 +40,7 @@ jobs:
           ${{ runner.os }}-maven-
       
     - name: Build with Maven
-      run: mvn clean test -fae -B -V -P templates,skip-hbase-compat-tests -Dmaven.wagon.http.retryHandler.count=3 -Dsurefire.redirectTestOutputToFile=false
+      run: mvn clean test -fae -B -V -P templates,skip-hbase-compat-tests -Dmaven.wagon.http.retryHandler.count=3 -Dsurefire.redirectTestOutputToFile=false -Dtest=CapabilityManagementServiceTest
       working-directory: ./cdap-app-fabric
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
