@@ -127,11 +127,15 @@ import org.apache.twill.discovery.Discoverable;
 import org.apache.twill.discovery.DiscoveryServiceClient;
 import org.apache.twill.filesystem.Location;
 import org.apache.twill.filesystem.LocationFactory;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.rules.TemporaryFolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -214,12 +218,26 @@ public abstract class AppFabricTestBase {
 
   private static HttpRequestConfig httpRequestConfig;
 
+  private  final Logger log = LoggerFactory.getLogger(this.getClass());
+
   @ClassRule
   public static TemporaryFolder tmpFolder = new TemporaryFolder();
 
   @BeforeClass
   public static void beforeClass() throws Throwable {
     initializeAndStartServices(createBasicCConf());
+  }
+
+  @Before
+  public void logStart() {
+    log.info("Starting test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
+               "(" + System.identityHashCode(Thread.currentThread()) + ")");
+  }
+
+  @After
+  public void logEnd() {
+    log.info("Done test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
+               "(" + System.identityHashCode(Thread.currentThread()) + ")");
   }
 
   protected static void initializeAndStartServices(CConfiguration cConf) throws Exception {
