@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.3.4
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -41,7 +41,7 @@ jobs:
     - name: Build with Maven
       run: mvn clean test -fae -B -V -P templates,skip-hbase-compat-tests -Dmaven.wagon.http.retryHandler.count=3
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2.2.2
       if: always()
       with:
         name: Build debug files
@@ -49,7 +49,8 @@ jobs:
           **/target/rat.txt
           **/target/surefire-reports/*
     - name: Surefire Report
-      uses: ScaCap/action-surefire-report@v1.0.5
+      # Pinned 1.0.5 version
+      uses: ScaCap/action-surefire-report@ad808943e6bfbd2e6acba7c53fdb5c89534da533
       if: always()
       with:
         # GITHUB_TOKEN
