@@ -232,13 +232,15 @@ public abstract class AppFabricTestBase {
   @Before
   public void logStart() {
     log.info("Starting test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
-               "(" + System.identityHashCode(Thread.currentThread()) + ") of process " + ManagementFactory.getRuntimeMXBean().getName());
+               "(" + System.identityHashCode(Thread.currentThread()) +
+               ") of process " + ManagementFactory.getRuntimeMXBean().getName());
   }
 
   @After
   public void logEnd() {
     log.info("Done test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
-               "(" + System.identityHashCode(Thread.currentThread()) + ") of process " + ManagementFactory.getRuntimeMXBean().getName());
+               "(" + System.identityHashCode(Thread.currentThread()) +
+               ") of process " + ManagementFactory.getRuntimeMXBean().getName());
   }
 
   protected static void initializeAndStartServices(CConfiguration cConf) throws Exception {
