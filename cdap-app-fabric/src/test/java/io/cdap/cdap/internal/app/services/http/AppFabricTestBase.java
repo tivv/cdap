@@ -140,6 +140,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.management.ManagementFactory;
 import java.lang.reflect.Type;
 import java.net.InetAddress;
 import java.net.URI;
@@ -231,13 +232,13 @@ public abstract class AppFabricTestBase {
   @Before
   public void logStart() {
     log.info("Starting test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
-               "(" + System.identityHashCode(Thread.currentThread()) + ")");
+               "(" + System.identityHashCode(Thread.currentThread()) + ") of process " + ManagementFactory.getRuntimeMXBean().getName());
   }
 
   @After
   public void logEnd() {
     log.info("Done test in " + this.getClass() + " in thread " + Thread.currentThread().getName() +
-               "(" + System.identityHashCode(Thread.currentThread()) + ")");
+               "(" + System.identityHashCode(Thread.currentThread()) + ") of process " + ManagementFactory.getRuntimeMXBean().getName());
   }
 
   protected static void initializeAndStartServices(CConfiguration cConf) throws Exception {
