@@ -120,7 +120,7 @@ public class DatasetService extends AbstractService {
       .setChannelPipelineModifier(new ChannelPipelineModifier() {
         @Override
         public void modify(ChannelPipeline pipeline) {
-          pipeline.addAfter("codec", "log", new LoggingHandler(LogLevel.WARN));
+          pipeline.addFirst(new LoggingHandler(LogLevel.WARN));
         }
       })
       .build();
