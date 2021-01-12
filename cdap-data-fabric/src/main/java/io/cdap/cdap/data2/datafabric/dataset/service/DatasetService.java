@@ -38,8 +38,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import org.apache.twill.common.Cancellable;
 import org.apache.twill.discovery.DiscoveryService;
 import org.apache.twill.discovery.DiscoveryServiceClient;
@@ -117,12 +115,6 @@ public class DatasetService extends AbstractService {
       .setExecThreadPoolSize(cConf.getInt(Constants.Dataset.Manager.EXEC_THREADS))
       .setBossThreadPoolSize(cConf.getInt(Constants.Dataset.Manager.BOSS_THREADS))
       .setWorkerThreadPoolSize(cConf.getInt(Constants.Dataset.Manager.WORKER_THREADS))
-      .setChannelPipelineModifier(new ChannelPipelineModifier() {
-        @Override
-        public void modify(ChannelPipeline pipeline) {
-          pipeline.addFirst(new LoggingHandler(LogLevel.WARN));
-        }
-      })
       .build();
     this.discoveryService = discoveryService;
     this.discoveryServiceClient = discoveryServiceClient;
