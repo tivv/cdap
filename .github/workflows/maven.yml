@@ -19,12 +19,13 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]    
+    types: [opened, synchronize, reopened, labeled]
   workflow_dispatch:
 
 jobs:
   build:
 
-    if: contains(github.event.pull_request.labels.*.name, 'build')
+    if: contains(github.event.pull_request.labels.*.name, 'build') || github.event_name == 'workflow_dispatch'
     runs-on: self-hosted
 
     steps:
