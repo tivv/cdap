@@ -24,7 +24,7 @@ on:
 jobs:
   build:
 
-    if: contains(github.event.issue.labels.*.name, 'build') || github.event_name == 'workflow_dispatch'
+    if: contains(github.event.issue.labels.*.name, 'build')
     runs-on: self-hosted
 
     steps:
