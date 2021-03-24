@@ -23,6 +23,8 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.Map;
 
+import static org.junit.Assert.fail;
+
 public class ReducibleAggregatorTest extends ReducibleAggregatorTestBase {
   /**
    * Common arguments for spark 1 and 2 to test without dataset aggregation
@@ -35,6 +37,7 @@ public class ReducibleAggregatorTest extends ReducibleAggregatorTestBase {
   public void testSimpleAggregator() throws Exception {
     testSimpleAggregator(Engine.MAPREDUCE, DEFAULT_ARGUMENTS);
     testSimpleAggregator(Engine.SPARK, DEFAULT_ARGUMENTS);
+    fail("Test failure check");
   }
 
   @Test
